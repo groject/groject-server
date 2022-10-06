@@ -34,7 +34,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Docker Build
-        run: docker build -t moonsaxx/groject-server .
+        run: docker build -t groject-server .
 
       - name: Push on Dockerhub
         run: docker push moonsaxx/groject-server
