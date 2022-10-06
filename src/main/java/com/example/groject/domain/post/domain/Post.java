@@ -39,6 +39,9 @@ public class Post extends BaseTimeEntity {
     private String category;
 
     @Column
+    private String content;
+
+    @Column
     private boolean isMine;
 
     @Column
@@ -49,7 +52,7 @@ public class Post extends BaseTimeEntity {
     private User user;
 
     @Builder
-    public Post(String imageUrl, String projectName, String intro, String skill, String phoneNumber, String category, User user, boolean isMine, int likeCheck) {
+    public Post(String imageUrl, String projectName, String intro, String skill, String phoneNumber, String category, User user, String content, boolean isMine, int likeCheck) {
         this.imageUrl = imageUrl;
         this.projectName = projectName;
         this.intro = intro;
@@ -57,16 +60,18 @@ public class Post extends BaseTimeEntity {
         this.phoneNumber = phoneNumber;
         this.category = category;
         this.user = user;
+        this.content = content;
         this.isMine = isMine;
         this.likeCheck = likeCheck;
     }
 
-    public void update(String imageUrl, String projectName, String intro, String skill, String phoneNumber, String category) {
+    public void update(String imageUrl, String projectName, String intro, String skill, String phoneNumber, String content, String category) {
         this.imageUrl = imageUrl;
         this.projectName = projectName;
         this.intro = intro;
         this.skill = skill;
         this.phoneNumber = phoneNumber;
+        this.content = content;
         this.category = category;
     }
 

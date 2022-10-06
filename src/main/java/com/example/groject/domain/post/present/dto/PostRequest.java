@@ -12,4 +12,5 @@ public class PostRequest {
     private String phoneNumber;
     private String category;
     private String imageUrl;
+    private String content;
 }

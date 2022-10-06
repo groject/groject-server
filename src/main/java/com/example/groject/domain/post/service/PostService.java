@@ -34,6 +34,7 @@ public class PostService {
                         .phoneNumber(request.getPhoneNumber())
                         .category(request.getCategory())
                         .user(user)
+                        .content(request.getContent())
                         .isMine(true)
                         .likeCheck(0)
                         .build()
@@ -52,6 +53,7 @@ public class PostService {
                 .skill(post.getSkill())
                 .category(post.getCategory())
                 .phoneNumber(post.getPhoneNumber())
+                .content(post.getContent())
                 .isMine(post.isMine())
                 .like(post.getLikeCheck())
                 .build();
@@ -69,6 +71,7 @@ public class PostService {
                         .phoneNumber(post.getPhoneNumber())
                         .category(post.getCategory())
                         .imageUrl(post.getImageUrl())
+                        .content(post.getContent())
                         .isMine(post.isMine())
                         .like(post.getLikeCheck())
                         .build()
@@ -89,6 +92,7 @@ public class PostService {
                         .phoneNumber(post.getPhoneNumber())
                         .category(post.getCategory())
                         .imageUrl(post.getImageUrl())
+                        .content(post.getContent())
                         .isMine(post.isMine())
                         .like(post.getLikeCheck())
                         .build()
@@ -109,6 +113,7 @@ public class PostService {
                         .phoneNumber(post.getPhoneNumber())
                         .category(post.getCategory())
                         .imageUrl(post.getImageUrl())
+                        .content(post.getContent())
                         .isMine(post.isMine())
                         .like(post.getLikeCheck())
                         .build()
@@ -129,6 +134,7 @@ public class PostService {
                         .phoneNumber(post.getPhoneNumber())
                         .category(post.getCategory())
                         .imageUrl(post.getImageUrl())
+                        .content(post.getContent())
                         .isMine(post.isMine())
                         .like(post.getLikeCheck())
                         .build()
@@ -162,7 +168,7 @@ public class PostService {
             throw UserNotFoundException.EXCEPTION;
         }
 
-        post.update(request.getImageUrl(), request.getProjectName(), request.getIntro(), request.getSkill(), request.getPhoneNumber(), request.getCategory());
+        post.update(request.getImageUrl(), request.getProjectName(), request.getIntro(), request.getSkill(), request.getPhoneNumber(), request.getContent(), request.getCategory());
 
     }
 }
