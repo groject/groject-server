@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@Tag(name = "게시글", description = "게시글 관련 API 입니다, category는 String 타입, postId는 Long타입 입니다")
+@Tag(name = "게시글", description = "게시글 관련 API 입니다, postId는 Long타입 입니다")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/post")
