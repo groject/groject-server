@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "좋아요", description = "좋아요 api이고, postId는 Long타입 입니다")
+@Tag(name = "좋아요", description = "좋아요 api이고, postId는 Long 입니다")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/like")
