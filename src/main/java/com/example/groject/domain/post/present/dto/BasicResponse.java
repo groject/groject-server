@@ -18,7 +18,7 @@ public class BasicResponse {
     private String category;
     private String imageUrl;
     private String content;
-    private boolean isMine;
     private boolean isLiked;
+    private boolean isMine;
     private int like;
 }

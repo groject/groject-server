@@ -24,11 +24,12 @@ public class PostResponse {
         private String category;
         private String imageUrl;
         private String content;
+        private boolean isLiked;
         private boolean isMine;
         private int like;
 
         @QueryProjection
-        public PostDto(Long id, String projectName, String intro, String skill, String phoneNumber, String category, String imageUrl, String content, boolean isMine, int like) {
+        public PostDto(Long id, String projectName, String intro, String skill, String phoneNumber, String category, String imageUrl, String content, boolean isLiked, boolean isMine, int like) {
             this.id = id;
             this.projectName = projectName;
             this.intro = intro;
@@ -37,6 +38,7 @@ public class PostResponse {
             this.category = category;
             this.imageUrl = imageUrl;
             this.content = content;
+            this.isLiked = isLiked;
             this.isMine = isMine;
             this.like = like;
         }

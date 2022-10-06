@@ -1,6 +1,7 @@
 package com.example.groject.domain.post.service;
 
 import com.example.groject.domain.post.domain.Post;
+import com.example.groject.domain.post.domain.repository.LikeRepository;
 import com.example.groject.domain.post.present.dto.BasicResponse;
 import com.example.groject.domain.post.present.dto.PostRequest;
 import com.example.groject.domain.post.present.dto.PostResponse;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class PostService {
+    private final LikeRepository likeRepository;
     private final PostRepository postRepository;
     private final UserFacade userFacade;
 
@@ -42,8 +44,16 @@ public class PostService {
     }
 
     public BasicResponse introPost(Long postId) {
+        User user = userFacade.getCurrentUser();
+
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> PostNotFoundException.EXCEPTION);
+
+        boolean check = false;
+
+        if(likeRepository.findByUserAndPost(user, post).isPresent()) {
+            check = true;
+        }
 
         return BasicResponse.builder()
                 .id(post.getId())
@@ -54,12 +64,15 @@ public class PostService {
                 .category(post.getCategory())
                 .phoneNumber(post.getPhoneNumber())
                 .content(post.getContent())
+                .isLiked(check)
                 .isMine(post.isMine())
                 .like(post.getLikeCheck())
                 .build();
     }
 
     public PostResponse list(String category) {
+        User user = userFacade.getCurrentUser();
+
         List<PostResponse.PostDto> list = postRepository.findAllByCategoryOrderByCreateTimeDesc(category)
                 .stream()
                 .map(post -> PostResponse.PostDto
@@ -72,6 +85,7 @@ public class PostService {
                         .category(post.getCategory())
                         .imageUrl(post.getImageUrl())
                         .content(post.getContent())
+                        .isLiked(likeRepository.findByUserAndPost(user, post).isPresent())
                         .isMine(post.isMine())
                         .like(post.getLikeCheck())
                         .build()
@@ -81,6 +95,8 @@ public class PostService {
     }
 
     public PostResponse listByLike(String category) {
+        User user = userFacade.getCurrentUser();
+
         List<PostResponse.PostDto> list = postRepository.findAllByCategoryOrderByLikeCheckDesc(category)
                 .stream()
                 .map(post -> PostResponse.PostDto
@@ -93,6 +109,7 @@ public class PostService {
                         .category(post.getCategory())
                         .imageUrl(post.getImageUrl())
                         .content(post.getContent())
+                        .isLiked(likeRepository.findByUserAndPost(user, post).isPresent())
                         .isMine(post.isMine())
                         .like(post.getLikeCheck())
                         .build()
@@ -102,6 +119,8 @@ public class PostService {
     }
 
     public PostResponse listAllByTime() {
+        User user = userFacade.getCurrentUser();
+
         List<PostResponse.PostDto> list = postRepository.findAllOrderByCreateTimeDate()
                 .stream()
                 .map(post -> PostResponse.PostDto
@@ -114,6 +133,7 @@ public class PostService {
                         .category(post.getCategory())
                         .imageUrl(post.getImageUrl())
                         .content(post.getContent())
+                        .isLiked(likeRepository.findByUserAndPost(user, post).isPresent())
                         .isMine(post.isMine())
                         .like(post.getLikeCheck())
                         .build()
@@ -123,6 +143,8 @@ public class PostService {
     }
 
     public PostResponse listAllByLike() {
+        User user = userFacade.getCurrentUser();
+
         List<PostResponse.PostDto> list = postRepository.findAllByOrderByLikeCheckDesc()
                 .stream()
                 .map(post -> PostResponse.PostDto
@@ -135,6 +157,7 @@ public class PostService {
                         .category(post.getCategory())
                         .imageUrl(post.getImageUrl())
                         .content(post.getContent())
+                        .isLiked(likeRepository.findByUserAndPost(user, post).isPresent())
                         .isMine(post.isMine())
                         .like(post.getLikeCheck())
                         .build()
